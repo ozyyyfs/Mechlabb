@@ -108,3 +108,19 @@ The browser suite checks all content detail routes, all 52 calculator forms, sea
 Heavy chart, quiz, diagnostic and Three.js views are loaded on demand. The engine caps device pixel ratio at 2 and disposes its resources when leaving the route. No network calls are required after the app assets load. Use HTTPS, compressed static assets and long-lived caching for hashed assets in production. WebGL is required for the 3D model; if unavailable, the app retains the explanatory controls and shows a clear error.
 
 Browser support: current evergreen Chromium, Firefox and Safari with WebGL. Automated delivery verification uses Chromium/Edge; other engines require their own acceptance pass.
+
+## Engine Designer
+
+Open Engine Designer from the dashboard or navigation (`#/engine-designer`). It is a concept specification workspace, not manufacturing CAD.
+
+- 68 editable settings across architecture, block/pistons, crank/bearings, head/valves, air/fuel, cooling/oil and performance.
+- Inline, V and boxer layouts, 1–16 cylinders within supported counts; generic petrol/diesel/turbo presets.
+- Parametric assembly preview with orbit, zoom, cutaway, exploded view, moving pistons and subsystem visibility. Preview animation is schematic and does not simulate the specified firing order, valve timing or combustion. Only key geometry controls affect the meshes; remaining specifications are kept in JSON and the report.
+- Up to 100 custom component specification entries for dimensions, materials, clearances and assembly notes.
+- Displacement, assumed-BMEP torque/power, mean piston speed, clearance volume, rod/stroke ratio and intake volume flow. Boost is recorded and does not independently predict power. Capture a baseline to compare power as assumptions change.
+- Explicit device save/load, versioned JSON import/export and a text specification report. Unsaved edits are not automatically restored after reload. A new design leaves the saved device copy intact.
+- Fixed mobile app shell. The designer uses paged fields and tabs without page scrolling; longer existing reference pages remain accessible through the main panel's internal scroll.
+
+Use factory specifications to describe a particular vehicle engine. Generic presets are not verified factory data. Production design still requires detailed CAD, tolerance stacks, thermal/stress analysis, lubrication/combustion validation and physical testing.
+
+Run `pnpm install`, `pnpm dev` for development or `pnpm build`, `pnpm preview` for the production build. The included `dist/` can be served by a static HTTP host with relative asset paths. Do not open `dist/index.html` directly through the file protocol.
