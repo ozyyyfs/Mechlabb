@@ -9,6 +9,16 @@ import { formulas } from '../data/formulas.js';
 import { projects } from '../data/projects.js';
 import { questions } from '../data/quizzes.js';
 const collections = {
+  'Engine Designer': [
+    'engine-designer',
+    [
+      {
+        id: '',
+        name: 'Engine Designer',
+        description: 'Custom car engine design, parts and specifications',
+      },
+    ],
+  ],
   Calculators: ['calculators', calculators],
   Materials: ['materials', materials],
   Machines: ['machines', machines],

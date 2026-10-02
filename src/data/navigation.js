@@ -19,6 +19,13 @@ import {
 } from 'lucide-react';
 export const navigation = [
   {
+    id: 'engine-designer',
+    name: 'Engine Designer',
+    icon: Cog,
+    group: 'Workspace',
+    description: 'Design a custom engine, inspect geometry and export specifications',
+  },
+  {
     id: 'dashboard',
     name: 'Dashboard',
     icon: LayoutDashboard,

@@ -23,6 +23,7 @@ import { manufacturing } from '../data/manufacturing.js';
 import { drawing } from '../data/drawing.js';
 import { questions } from '../data/quizzes.js';
 const quick = [
+  ['engine-designer', 'Engine Designer', 'Build a custom engine concept', Cog],
   ['calculators', 'Calculators', 'Solve with confidence', Calculator],
   ['materials', 'Materials', 'Know your material', Layers3],
   ['machines', 'Machines', 'See how it works', Cog],

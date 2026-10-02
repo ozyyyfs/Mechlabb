@@ -37,6 +37,7 @@ import Materials from './pages/Materials.jsx';
 import Library from './pages/Library.jsx';
 import BeamLab from './pages/BeamLab.jsx';
 import Standards from './pages/Standards.jsx';
+const EngineDesigner = lazy(() => import('./pages/EngineDesigner.jsx'));
 const Quiz = lazy(() => import('./pages/Quiz.jsx'));
 const Charts = lazy(() => import('./charts/Charts.jsx'));
 const Visualizer = lazy(() => import('./three/EngineViewer.jsx'));
@@ -117,6 +118,7 @@ export default function App() {
     document.title = `${nav?.name || 'Not found'} · MECHLAB`;
   }, [page]);
   const showPage = () => {
+    if (page === 'engine-designer') return <EngineDesigner />;
     if (page === 'dashboard') return <Dashboard lab={lab} openSearch={setSearch} />;
     if (page === 'calculators')
       return <Calculators selected={selected} lab={lab} navigate={navigate} />;
@@ -283,7 +285,9 @@ export default function App() {
               <div className="topbar-text">
                 <span className="topbar-eyebrow">
                   {nav?.group || 'MECHLAB'}
-                  {selected && <span className="crumb-detail"> · {selected.replaceAll('-', ' ')}</span>}
+                  {selected && (
+                    <span className="crumb-detail"> · {selected.replaceAll('-', ' ')}</span>
+                  )}
                 </span>
                 <strong>{nav?.name || 'Not found'}</strong>
               </div>
@@ -309,7 +313,12 @@ export default function App() {
             </button>
           </div>
         </header>
-        <main id="main-content" tabIndex={-1} key={page} className="main-content">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          key={page}
+          className={`main-content ${page === 'engine-designer' ? 'designer-main' : ''}`}
+        >
           <ErrorBoundary key={route}>
             <Suspense fallback={<LoadingState />}>{showPage()}</Suspense>
           </ErrorBoundary>
@@ -325,7 +334,12 @@ export default function App() {
           ['calculators', 'Calculate', Calculator],
           ['materials', 'Materials', Layers3],
         ].map(([id, label, Icon]) => (
-          <a key={id} href={`#/${id}`} className={page === id ? 'active' : ''} aria-current={page === id ? 'page' : undefined}>
+          <a
+            key={id}
+            href={`#/${id}`}
+            className={page === id ? 'active' : ''}
+            aria-current={page === id ? 'page' : undefined}
+          >
             <Icon size={21} />
             <span>{label}</span>
           </a>
